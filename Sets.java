@@ -1,12 +1,13 @@
 package Discrete_Math;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 
 public class Sets {
 	
 	private int[] setOfIntegers;
 	
-	public int[] intersection1(int[] set1, int[] set2) {
+	public int[] intersectionArray(int[] set1, int[] set2) {
 		int minSetLength = Math.min(set1.length, set2.length);
 		int maxSetLength = Math.max(set1.length, set2.length);
 		int[] minSet;
@@ -39,7 +40,32 @@ public class Sets {
 		return setOfIntegers;
 	}
 	
-	public int[] intersection2(int[] set1, int[] set2) {
+	public ArrayList<Integer> intersectionArrayList(int[] set1, int[] set2) {
+		ArrayList<Integer> set = new ArrayList<Integer>();
+		int minSetLength = Math.min(set1.length, set2.length);
+		int maxSetLength = Math.max(set1.length, set2.length);
+		int[] minSet;
+		int[] maxSet;
+		int setLength = 0;
+		int setIterator = 0;
+		if(set1.length < set2.length) {
+			minSet = set1;
+			maxSet = set2;
+		} else {
+			minSet = set2;
+			maxSet = set1;
+		}
+		for(int i = 0; i < minSetLength; i++) {
+			for(int j = 0; j < maxSetLength; j++) {
+				if(minSet[i] == maxSet[j]) {
+					set.add(minSet[i]);
+				}
+			}
+		}
+		return set;
+	}
+	
+	public int[] intersectionArraySort(int[] set1, int[] set2) {
 		Arrays.sort(set1);
 		Arrays.sort(set2);
 		int[] lowSet;
@@ -84,38 +110,6 @@ public class Sets {
 		return setOfIntegers;
 	}
 	
-	/*public int[] union(int[] set1, int[] set2) {
-		Arrays.sort(set1);
-		Arrays.sort(set2);
-		int[] minSet;
-		int[] maxSet;
-		if(set1.length < set2.length) {
-			minSet = set1;
-			maxSet = set2;
-		} else {
-			minSet = set2;
-			maxSet = set1;
-		}
-		if(set1 == set2) {
-			setOfIntegers = set1;
-		} else {	
-			int iterator = 0;	
-			int[] intersection = intersection(set1,set2);
-			setOfIntegers = new int[minSet.length+maxSet.length-intersection.length];
-			for(int i = 0; i < minSet.length; i++) {
-				setOfIntegers[i] = minSet[i];
-			}
-			for(int j = 0; j < maxSet.length; j++) {
-				if(minSet[minSet.length-1] < maxSet[j] || maxSet[j] < minSet[0]) {
-					setOfIntegers[minSet.length+iterator] = maxSet[j];
-					iterator++;
-				}
-			}
-		}
-		return setOfIntegers; // broken alg
-	}
-	*/
-	
 	public int[] union(int[] set1, int[] set2) {
 		Arrays.sort(set1);
 		Arrays.sort(set2);
@@ -142,6 +136,43 @@ public class Sets {
 		}
 		return setOfIntegers;
 	}
+	
+	/*
+	 * Algorithms below have bugs, Feel free to fix them
+	 */
+	
+	
+	/* public int[] union(int[] set1, int[] set2) {
+	Arrays.sort(set1);
+	Arrays.sort(set2);
+	int[] minSet;
+	int[] maxSet;
+	if(set1.length < set2.length) {
+		minSet = set1;
+		maxSet = set2;
+	} else {
+		minSet = set2;
+		maxSet = set1;
+	}
+	if(set1 == set2) {
+		setOfIntegers = set1;
+	} else {	
+		int iterator = 0;	
+		int[] intersection = intersection(set1,set2);
+		setOfIntegers = new int[minSet.length+maxSet.length-intersection.length];
+		for(int i = 0; i < minSet.length; i++) {
+			setOfIntegers[i] = minSet[i];
+		}
+		for(int j = 0; j < maxSet.length; j++) {
+			if(minSet[minSet.length-1] < maxSet[j] || maxSet[j] < minSet[0]) {
+				setOfIntegers[minSet.length+iterator] = maxSet[j];
+				iterator++;
+			}
+		}
+	}
+	return setOfIntegers; 
+}
+*/
 	
 	
 }
