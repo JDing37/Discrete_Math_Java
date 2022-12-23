@@ -110,35 +110,39 @@ public class Sets {
 		return setOfIntegers;
 	}
 	
-	public int[] union(int[] set1, int[] set2) {
+	public int[] unionArraySort(int[] set1, int[] set2) {
 		Arrays.sort(set1);
 		Arrays.sort(set2);
-		int[] intersection = intersection1(set1,set2);
+		int[] intersection = intersectionArray(set1,set2);
 		if(set1 == set2) {
 			setOfIntegers = set1;
 		} else {
 			setOfIntegers = new int[set1.length+set2.length-intersection.length];
-			/*for(int i = 0; i < set1.length; i++) {
+			for(int i = 0; i < set1.length; i++) {
 				setOfIntegers[i] = set1[i];
 			}
-			for(int i = 0; i < set2.length; i++) {
-				for(int j = 0; j < setOfIntegers.length; i++) {
-					if(set)
+			int l = 0;
+			boolean check = false;
+			for(int j = 0; j < set2.length; j++) {
+				for(int k = 0; k < set1.length; k++) {
+					if(set2[j] != set1[k]) {
+						check = true;
+					} else {
+						check = false;
+					}
 				}
-			}*/
-			/*for(int i = 0; i < setOfIntegers.length; i++) {
-				if(i < set1.length) {
-					setOfIntegers[i] = set1[i];
-				} else if(i >= set1.length) {
-					setOfIntegers[i] = set2[i]; //wrong
+				if(check == true) {
+					setOfIntegers[set1.length+l] = set2[j];
+					l++;
+					check = false;
 				}
-			}*/
+			}
 		}
 		return setOfIntegers;
 	}
 	
 	/*
-	 * Algorithms below have bugs, Feel free to fix them
+	 * Algorithms below have bugs
 	 */
 	
 	
