@@ -149,8 +149,22 @@ public class CombinatorialApplications {
 		
 	}
 	
+	public void squareWordSearchPossibilities(int row) {
+		int linearSummation = 0;
+		int diagnolSummationTop = 0;
+		int diagnolSummationBottom = 0;
+		int possibilities;
+		for(int i = 0; i < row; i++) {
+			linearSummation += i+1;
+			diagnolSummationBottom += i+1;
+		}
+		for(int k = 0; k < row-1; k++) {
+			for(int j = 0; j <= k; j++) {
+				diagnolSummationTop += j + 1;
+			}
+		}
+		possibilities = (2*(row *linearSummation))+(4*diagnolSummationTop)+(2*diagnolSummationBottom)-(3*(row*row));
+		System.out.println(possibilities);
+	}
 	
-
-
-
 }
